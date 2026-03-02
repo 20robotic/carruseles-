@@ -95,3 +95,12 @@ function sendH(){
 window.addEventListener('load',sendH);
 window.addEventListener('resize',sendH);
 </script>
+<script>
+function sendH(){
+  var el=document.querySelector('.cc3')||document.querySelector('.carousel-container')||document.body;
+  var h=el.getBoundingClientRect().bottom+30;
+  window.parent.postMessage({h:h},'*');
+}
+window.addEventListener('load',function(){setTimeout(sendH,300);});
+window.addEventListener('resize',function(){setTimeout(sendH,100);});
+</script>
