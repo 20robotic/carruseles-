@@ -3,7 +3,7 @@
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:transparent;padding:10px 30px 20px}
+body{background:transparent;padding:10px 44px 20px}
 .cc4{max-width:1280px;margin:0 auto;position:relative;font-family:'Inter',sans-serif}
 .ct4{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
 .cw4{overflow:hidden;position:relative;border-radius:12px}
@@ -64,7 +64,7 @@ window.addEventListener('load',function(){
   ];
   var track=document.getElementById('t4'),prev=document.getElementById('p4'),next=document.getElementById('n4');
   if(!track||!prev||!next)return;
-  function mkCard(p){var a=document.createElement('a');a.href=p.u;a.className='pc4';a.innerHTML='<div class="pi4"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd4"><div class="pn4">'+p.n+'</div><div class="pp4">'+p.p+'</div></div>';return a;}
+  function mkCard(p){var a=document.createElement('a');a.href=p.u; a.target="_top";a.className='pc4';a.innerHTML='<div class="pi4"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd4"><div class="pn4">'+p.n+'</div><div class="pp4">'+p.p+'</div></div>';return a;}
   var items=P.concat(P).concat(P),off=P.length;
   items.forEach(function(p){track.appendChild(mkCard(p));});
   function cw(){var c=track.querySelector('.pc4');if(!c)return 240;return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);}
