@@ -1,9 +1,13 @@
-<!-- CARRUSEL LIBROS PDF KNINGLÉS -->
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:transparent;padding:10px 30px 20px}
 .cc3{max-width:1280px;margin:0 auto;position:relative;font-family:'Inter',sans-serif}
 .ct3{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
 .cw3{overflow:hidden;position:relative;border-radius:12px}
-.ck3{display:flex;gap:20px;transition:transform .4s ease;padding:10px 0;will-change:transform}
+.ck3{display:flex;gap:20px;transition:transform .4s ease;padding:10px 0}
 .ck3.nt{transition:none}
 .pc3{flex:0 0 calc(20% - 16px);min-width:220px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06);overflow:hidden;border:1px solid #eee;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
 .pc3:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.1);border-color:#ff9900}
@@ -16,91 +20,49 @@
 .cb3:hover{background:#ff9900;border-color:#ff9900}
 .cb3:hover svg{color:white}
 .cb3 svg{width:22px;height:22px;color:#555}
-.cb3.lf{left:-22px}
-.cb3.rg{right:-22px}
+.cb3.lf{left:-22px}.cb3.rg{right:-22px}
 @media(max-width:1024px){.pc3{flex:0 0 calc(25% - 15px)}}
 @media(max-width:800px){.pc3{flex:0 0 calc(33.333% - 14px)}}
 @media(max-width:600px){.pc3{flex:0 0 calc(50% - 10px)}.cb3.lf{left:-12px}.cb3.rg{right:-12px}}
 @media(max-width:420px){.pc3{flex:0 0 100%}}
 </style>
-
+</head>
+<body>
+<div id="wrap">
 <div class="cc3">
-  <h2 class="ct3">📄 4 Libros Digitales PDF :</h2>
+  <h2 class="ct3">📄 Libros PDF para descargar:</h2>
   <div class="cw3">
-    <button class="cb3 lf" id="p3" aria-label="Anterior">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
+    <button class="cb3 lf" id="p3" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
     <div class="ck3" id="t3"></div>
-    <button class="cb3 rg" id="n3" aria-label="Siguiente">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
+    <button class="cb3 rg" id="n3" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
   </div>
 </div>
-
+</div>
 <script>
-window.addEventListener('load', function(){
+window.addEventListener('load',function(){
   var P=[
     {n:"Libro Gratis",u:"https://tienda.kningles.com/pages/libro-gratis",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772296858/Edici%C3%B3n_2023_lgyioi.png",p:"Gratis"},
     {n:"Gramática 1 + Audios",u:"https://tienda.kningles.com/products/pdf-grama",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772481059/Edici%C3%B3n_2023_1_eoejhd.png",p:"$12.99"},
     {n:"Básico 1 + Audios",u:"https://tienda.kningles.com/products/pdf-basico",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772480879/hy5_a7sumi.png",p:"$12.99"},
     {n:"Ciudadanía + Audios",u:"https://tienda.kningles.com/products/pdf-ciudada",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772480879/de3_vkejhp.png",p:"$12.99"}
   ];
-
-  var track=document.getElementById('t3');
-  var prev=document.getElementById('p3');
-  var next=document.getElementById('n3');
-  if(!track||!prev||!next) return;
-
-  function mkCard(p){
-    var a=document.createElement('a');
-    a.href=p.u; a.className='pc3';
-    a.innerHTML='<div class="pi3"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd3"><div class="pn3">'+p.n+'</div><div class="pp3">'+p.p+'</div></div>';
-    return a;
-  }
-
-  var items=P.concat(P).concat(P);
-  var off=P.length;
+  var track=document.getElementById('t3'),prev=document.getElementById('p3'),next=document.getElementById('n3');
+  if(!track||!prev||!next)return;
+  function mkCard(p){var a=document.createElement('a');a.href=p.u;a.className='pc3';a.innerHTML='<div class="pi3"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd3"><div class="pn3">'+p.n+'</div><div class="pp3">'+p.p+'</div></div>';return a;}
+  var items=P.concat(P).concat(P),off=P.length;
   items.forEach(function(p){track.appendChild(mkCard(p));});
-
-  function cw(){
-    var c=track.querySelector('.pc3');
-    if(!c) return 240;
-    return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);
-  }
-
-  function go(idx,ani){
-    if(!ani){track.classList.add('nt');track.style.transform='translateX(-'+(idx*cw())+'px)';track.offsetHeight;track.classList.remove('nt');}
-    else{track.style.transform='translateX(-'+(idx*cw())+'px)';}
-  }
-
+  function cw(){var c=track.querySelector('.pc3');if(!c)return 240;return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);}
+  function go(idx,ani){if(!ani){track.classList.add('nt');track.style.transform='translateX(-'+(idx*cw())+'px)';track.offsetHeight;track.classList.remove('nt');}else{track.style.transform='translateX(-'+(idx*cw())+'px)';}}
   go(off,false);
-
   function slide(d){off+=d;go(off,true);}
-
-  track.addEventListener('transitionend',function(){
-    var len=P.length;
-    if(off>=len*2){off-=len;go(off,false);}
-    if(off<len){off+=len;go(off,false);}
-  });
-
+  track.addEventListener('transitionend',function(){var len=P.length;if(off>=len*2){off-=len;go(off,false);}if(off<len){off+=len;go(off,false);}});
   prev.addEventListener('click',function(){slide(-1);});
   next.addEventListener('click',function(){slide(1);});
-  window.addEventListener('resize',function(){go(off,false);});
+  window.addEventListener('resize',function(){go(off,false);sendH();});
+  sendH();
 });
+function sendH(){var el=document.getElementById('wrap');if(!el)return;window.parent.postMessage({h:el.offsetHeight+30},'*');}
+window.addEventListener('load',function(){setTimeout(sendH,600);});
 </script>
-<script>
-function sendH(){
-  window.parent.postMessage({h:document.body.scrollHeight},'*');
-}
-window.addEventListener('load',sendH);
-window.addEventListener('resize',sendH);
-</script>
-<script>
-function sendH(){
-  var el=document.querySelector('.cc3')||document.querySelector('.carousel-container')||document.body;
-  var h=el.getBoundingClientRect().bottom+30;
-  window.parent.postMessage({h:h},'*');
-}
-window.addEventListener('load',function(){setTimeout(sendH,300);});
-window.addEventListener('resize',function(){setTimeout(sendH,100);});
-</script>
+</body>
+</html>
