@@ -88,3 +88,10 @@ window.addEventListener('load', function(){
   window.addEventListener('resize',function(){go(off,false);});
 });
 </script>
+<script>
+function sendH(){
+  window.parent.postMessage({h:document.body.scrollHeight},'*');
+}
+window.addEventListener('load',sendH);
+window.addEventListener('resize',sendH);
+</script>
