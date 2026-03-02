@@ -1,0 +1,100 @@
+<!-- CARRUSEL EDICIONES ANTERIORES KNINGLÉS -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.carousel-container2{max-width:1280px;margin:0 auto;position:relative;font-family:'Inter',sans-serif}
+.carousel-title2{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
+.carousel-wrapper2{overflow:hidden;position:relative;border-radius:12px}
+.carousel-track2{display:flex;gap:20px;transition:transform .4s ease;padding:10px 0}
+.carousel-track2.no-transition{transition:none}
+.product-card2{flex:0 0 calc(20% - 16px);min-width:220px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06);overflow:hidden;border:1px solid #eee;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
+.product-card2:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.1);border-color:#ff9900}
+.card-image2{width:100%;aspect-ratio:1/1;background:#fafafa;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0}
+.card-image2 img{width:100%;height:100%;object-fit:contain;padding:16px}
+.card-content2{padding:16px}
+.card-title2{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.3;text-transform:uppercase;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:42px}
+.card-price2{font-size:18px;font-weight:800;color:#111;margin-bottom:6px}
+.carousel-btn2{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:white;border:1px solid #ddd;box-shadow:0 4px 12px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s}
+.carousel-btn2:hover{background:#ff9900;border-color:#ff9900}
+.carousel-btn2:hover svg{color:white}
+.carousel-btn2 svg{width:22px;height:22px;color:#555}
+.carousel-btn2.prev2{left:-22px}
+.carousel-btn2.next2{right:-22px}
+@media(max-width:1024px){.product-card2{flex:0 0 calc(25% - 15px)}}
+@media(max-width:800px){.product-card2{flex:0 0 calc(33.333% - 14px)}}
+@media(max-width:600px){.product-card2{flex:0 0 calc(50% - 10px)}.carousel-btn2.prev2{left:-12px}.carousel-btn2.next2{right:-12px}}
+@media(max-width:420px){.product-card2{flex:0 0 100%}}
+</style>
+
+<div class="carousel-container2">
+<h2 class="carousel-title2">📖 6 Libros de Ediciones Anteriores </h2>
+<div class="carousel-wrapper2">
+<button class="carousel-btn2 prev2" id="prevBtn2" aria-label="Anterior">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<div class="carousel-track2" id="carouselTrack2"></div>
+<button class="carousel-btn2 next2" id="nextBtn2" aria-label="Siguiente">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+</button>
+</div>
+</div>
+
+<script>
+(function(){
+const P=[
+{n:"2023 Cuaderno",u:"https://tienda.kningles.com/products/2023-cuaderno",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380317/ujh5_ybhbto.jpg",p:"$1.99"},
+{n:"2023 Delivery",u:"https://tienda.kningles.com/products/2023-delivery",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380318/g5_oblbyo.jpg",p:"$5.99"},
+{n:"2023 Colección 4 Libros + Cuaderno",u:"https://tienda.kningles.com/products/2023-4-libros",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380318/h5_anazlw.jpg",p:"$12.99"},
+{n:"2023 Construcción",u:"https://tienda.kningles.com/products/2023-construccion",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380317/854_dzvvag.jpg",p:"$5.99"},
+{n:"2023 Restaurante",u:"https://tienda.kningles.com/products/2023-restaurante",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380318/78_rdktxv.jpg",p:"$5.99"},
+{n:"2024 Conversacional",u:"https://tienda.kningles.com/products/2024-conversacional",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380318/1425_vrcj58.jpg",p:"$8.99"},
+{n:"2023 Gramática 1",u:"https://tienda.kningles.com/products/2023-gramatica1",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380319/14_exkqr8.jpg",p:"$5.99"},
+{n:"2023 Básico 1",u:"https://tienda.kningles.com/products/2023-basico-nivel-1",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772380318/25_mmuejl.jpg",p:"$5.99"}
+];
+
+function makeCard(p){
+  const a=document.createElement('a');
+  a.href=p.u;a.className='product-card2';
+  a.innerHTML=`<div class="card-image2"><img src="${p.i}" alt="${p.n}" loading="lazy"></div><div class="card-content2"><div class="card-title2">${p.n}</div><div class="card-price2">${p.p}</div></div>`;
+  return a;
+}
+
+const track=document.getElementById('carouselTrack2');
+const prev=document.getElementById('prevBtn2');
+const next=document.getElementById('nextBtn2');
+
+function vis(){
+  const w=window.innerWidth;
+  return w<=420?1:w<=600?2:w<=800?3:w<=1024?4:5;
+}
+
+const items=[...P,...P,...P];
+let offset=P.length;
+items.forEach(p=>track.appendChild(makeCard(p)));
+
+function cardW(){
+  const c=track.querySelector('.product-card2');
+  if(!c)return 240;
+  return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);
+}
+
+function go(idx,animate){
+  if(!animate)track.classList.add('no-transition');
+  track.style.transform=`translateX(-${idx*cardW()}px)`;
+  if(!animate){track.offsetHeight;track.classList.remove('no-transition');}
+}
+
+go(offset,false);
+
+function slide(dir){offset+=dir;go(offset,true);}
+
+track.addEventListener('transitionend',()=>{
+  const len=P.length;
+  if(offset>=len*2){offset-=len;go(offset,false);}
+  if(offset<len){offset+=len;go(offset,false);}
+});
+
+prev.addEventListener('click',()=>slide(-1));
+next.addEventListener('click',()=>slide(1));
+window.addEventListener('resize',()=>go(offset,false));
+})();
+</script>
