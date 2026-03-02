@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:transparent;padding:10px 30px 20px;font-family:'Inter',sans-serif}
+body{background:transparent;padding:10px 44px 20px;font-family:'Inter',sans-serif}
 #wrap{max-width:1280px;margin:0 auto;position:relative}
 h2{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
 .cw{overflow:hidden;position:relative;border-radius:12px}
@@ -85,7 +85,7 @@ function buildStars(r){
 
 function mkCard(d){
   var a=document.createElement('a');
-  a.href=d[1]; a.className='pc';
+  a.href=d[1]; a.target="_top"; a.className='pc';
   var rv=d[4] ? d[4].toFixed(1) : 'Nuevo';
   var rc=d[5] ? '('+d[5]+' '+(d[5]===1?'resena':'resenas')+')' : '';
   a.innerHTML='<div class="ci"><img src="'+d[2]+'" alt="'+d[0]+'" loading="lazy"></div>'
