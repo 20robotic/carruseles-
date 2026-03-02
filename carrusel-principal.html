@@ -1,142 +1,101 @@
-<!-- CARRUSEL DE LIBROS KNINGLÉS -->
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-.carousel-container{max-width:1280px;margin:0 auto;position:relative;font-family:'Inter',sans-serif}
-.carousel-title{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
-.carousel-wrapper{overflow:hidden;position:relative;border-radius:12px}
-.carousel-track{display:flex;gap:20px;transition:transform .4s ease;padding:10px 0}
-.carousel-track.no-transition{transition:none}
-.product-card{flex:0 0 calc(20% - 16px);min-width:220px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06);overflow:hidden;border:1px solid #eee;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
-.product-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.1);border-color:#ff9900}
-.card-image{width:100%;aspect-ratio:1/1;background:#fafafa;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0}
-.card-image img{width:100%;height:100%;object-fit:contain;padding:16px}
-.card-content{padding:16px}
-.card-title{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.3;text-transform:uppercase;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:42px}
-.card-price{font-size:18px;font-weight:800;color:#111;margin-bottom:6px}
-.card-rating{display:flex;align-items:center;gap:6px}
-.stars{display:flex;gap:2px}
-.star{width:16px;height:16px;color:#ff9900}
-.star-empty{color:#ddd}
-.rating-value{font-size:13px;font-weight:600;color:#444}
-.rating-count{font-size:12px;color:#888}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:white;border:1px solid #ddd;box-shadow:0 4px 12px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s}
-.carousel-btn:hover{background:#ff9900;border-color:#ff9900}
-.carousel-btn:hover svg{color:white}
-.carousel-btn svg{width:22px;height:22px;color:#555}
-.carousel-btn.prev{left:-22px}
-.carousel-btn.next{right:-22px}
-@media(max-width:1024px){.product-card{flex:0 0 calc(25% - 15px)}}
-@media(max-width:800px){.product-card{flex:0 0 calc(33.333% - 14px)}}
-@media(max-width:600px){.product-card{flex:0 0 calc(50% - 10px)}.carousel-btn.prev{left:-12px}.carousel-btn.next{right:-12px}}
-@media(max-width:420px){.product-card{flex:0 0 100%}}
+body{background:transparent;padding:10px 30px 20px}
+.cc1{max-width:1280px;margin:0 auto;position:relative;font-family:'Inter',sans-serif}
+.ct1{font-size:28px;font-weight:800;margin-bottom:30px;text-transform:uppercase;letter-spacing:-.02em;border-left:6px solid #ff6b00;padding-left:20px}
+.cw1{overflow:hidden;position:relative;border-radius:12px}
+.ck1{display:flex;gap:20px;transition:transform .4s ease;padding:10px 0}
+.ck1.nt{transition:none}
+.pc1{flex:0 0 calc(20% - 16px);min-width:220px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06);overflow:hidden;border:1px solid #eee;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
+.pc1:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.1);border-color:#ff9900}
+.pi1{width:100%;aspect-ratio:1/1;background:#fafafa;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0}
+.pi1 img{width:100%;height:100%;object-fit:contain;padding:16px}
+.pd1{padding:16px}
+.pn1{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.3;text-transform:uppercase;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:42px}
+.pp1{font-size:18px;font-weight:800;color:#111;margin-bottom:6px}
+.pr1{display:flex;align-items:center;gap:6px}
+.st{display:flex;gap:2px}
+.s{width:16px;height:16px;color:#ff9900}
+.se{color:#ddd}
+.rv{font-size:13px;font-weight:600;color:#444}
+.rc{font-size:12px;color:#888}
+.cb1{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:white;border:1px solid #ddd;box-shadow:0 4px 12px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s}
+.cb1:hover{background:#ff9900;border-color:#ff9900}
+.cb1:hover svg{color:white}
+.cb1 svg{width:22px;height:22px;color:#555}
+.cb1.lf{left:-22px}.cb1.rg{right:-22px}
+@media(max-width:1024px){.pc1{flex:0 0 calc(25% - 15px)}}
+@media(max-width:800px){.pc1{flex:0 0 calc(33.333% - 14px)}}
+@media(max-width:600px){.pc1{flex:0 0 calc(50% - 10px)}.cb1.lf{left:-12px}.cb1.rg{right:-12px}}
+@media(max-width:420px){.pc1{flex:0 0 100%}}
 </style>
-
-<div class="carousel-container">
-<h2 class="carousel-title">📚 22 Libros Más Populares</h2>
-<div class="carousel-wrapper">
-<button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-</button>
-<div class="carousel-track" id="carouselTrack"></div>
-<button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-</button>
+</head>
+<body>
+<div id="wrap">
+<div class="cc1">
+  <h2 class="ct1">📚 Todos nuestros libros</h2>
+  <div class="cw1">
+    <button class="cb1 lf" id="p1" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="ck1" id="t1"></div>
+    <button class="cb1 rg" id="n1" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
 </div>
 </div>
-
 <script>
-(function(){
-const B="https://res.cloudinary.com/dkadthyok/image/upload/";
-const P=[
-{n:"Gramática 1 2026",u:"https://tienda.kningles.com/pages/gramatica1",i:"v1772226317/grabd_zfsvf2.jpg",p:"$12.99",r:5.0,c:7},
-{n:"Restaurante 2026",u:"https://tienda.kningles.com/pages/restaurante",i:"v1772225931/gr_kixevj.jpg",p:"$14.99",r:4.3,c:10},
-{n:"Libro Gratis",u:"https://tienda.kningles.com/pages/libro-gratis",i:"v1772296858/Edici%C3%B3n_2023_lgyioi.png",p:"Gratis",r:0,c:0},
-{n:"Básico A2",u:"https://tienda.kningles.com/pages/basicoa2",i:"v1772164671/p_i9yh99.jpg",p:"$9.99",r:4.0,c:5},
-{n:"Básico A1 2026",u:"https://tienda.kningles.com/pages/basicoa1",i:"v1772248574/ggf_xkrskw.jpg",p:"$9.99",r:4.6,c:30},
-{n:"Conversacional 2026",u:"https://tienda.kningles.com/pages/conver12026",i:"v1772164984/gran_tvilnc.jpg",p:"$16.99",r:4.7,c:25},
-{n:"Plomería",u:"https://tienda.kningles.com/pages/plomeria",i:"v1772155861/a1_aaxxz6.jpg",p:"$11.99",r:5.0,c:1},
-{n:"Enfermería",u:"https://tienda.kningles.com/pages/enfermeria",i:"v1772153645/grnade22_nkc2nt.jpg",p:"$13.99",r:5.0,c:4},
-{n:"Warehouse",u:"https://tienda.kningles.com/pages/warehouse",i:"v1772144337/1x_avnnhf.jpg",p:"$10.99",r:5.0,c:7},
-{n:"Medio avanzado (B1+)",u:"https://tienda.kningles.com/pages/medio-avanzado",i:"v1772150797/2xxx_ru0nnw.jpg",p:"$15.99",r:5.0,c:4},
-{n:"Básico niños",u:"https://tienda.kningles.com/pages/basiconinos",i:"v1772232871/ChatGPTImageFeb27202602_50_32P_xxwmky.jpg",p:"$8.99",r:4.1,c:6},
-{n:"Limpieza",u:"https://tienda.kningles.com/pages/limpieza",i:"v1772233621/trert_zmpsfa.jpg",p:"$9.99",r:4.1,c:5},
-{n:"Dentista",u:"https://tienda.kningles.com/pages/dentista",i:"v1772246769/gb_nmmnf9.jpg",p:"$26.99",r:0,c:0},
-{n:"Construcción 2026",u:"https://tienda.kningles.com/pages/construccion26",i:"v1772234442/222_cikevj.jpg",p:"$18.99",r:5.0,c:3},
-{n:"Conversacional 2",u:"https://tienda.kningles.com/pages/conversacional2",i:"v1772234903/717Ub6UKY_L._SL1499__c4jijj.jpg",p:"$16.99",r:5.0,c:1},
-{n:"Barbería",u:"https://tienda.kningles.com/pages/barberia",i:"v1772235954/hyrd_yimuuu.jpg",p:"$12.99",r:5.0,c:2},
-{n:"B1 Intermedio",u:"https://tienda.kningles.com/pages/b1-intermedio",i:"v1772236891/71gwHhUryyL._SL1500__c7wvrj.jpg",p:"$14.99",r:5.0,c:1},
-{n:"Gramática 2",u:"https://tienda.kningles.com/pages/gramatica2",i:"v1772237712/14_hyqqm9.jpg",p:"$7.00",r:0,c:0},
-{n:"Mecánica",u:"https://tienda.kningles.com/pages/mecanica",i:"v1772243539/71wUadwCvwL._SL1500__rjgp7n.jpg",p:"$7.00",r:5.0,c:1},
-{n:"Electricidad",u:"https://tienda.kningles.com/pages/electricidad",i:"v1772244554/24147_n88m0w.jpg",p:"$17.99",r:5.0,c:4},
-{n:"Ciudadanía",u:"https://tienda.kningles.com/pages/ciudadania26",i:"v1772248066/juki_jx4xwv.jpg",p:"$9.99",r:4.4,c:10},
-{n:"Jardinería",u:"https://tienda.kningles.com/pages/jardineria",i:"v1772236508/71alEkd-DQL._SL1500__cxxusi.jpg",p:"$11.99",r:5.0,c:1}
-];
-
-const SVG_PATH='<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>';
-
+var SP='<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>';
 function stars(r){
-  if(!r)return Array(5).fill('<svg class="star star-empty" viewBox="0 0 20 20" fill="#ddd">'+SVG_PATH+'</svg>').join('');
-  const f=Math.floor(r),h=r%1>=.5,e=5-f-(h?1:0);
-  let s='';
-  for(let i=0;i<f;i++)s+='<svg class="star" viewBox="0 0 20 20" fill="currentColor">'+SVG_PATH+'</svg>';
-  if(h)s+='<svg class="star" viewBox="0 0 20 20"><defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="50%" stop-color="#ff9900"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="'+SVG_PATH.slice(6,-7)+'" fill="url(#hg)"/></svg>';
-  for(let i=0;i<e;i++)s+='<svg class="star star-empty" viewBox="0 0 20 20" fill="#ddd">'+SVG_PATH+'</svg>';
+  if(!r)return Array(5).fill('<svg class="s se" viewBox="0 0 20 20" fill="#ddd">'+SP+'</svg>').join('');
+  var f=Math.floor(r),h=r%1>=.5,e=5-f-(h?1:0),s='';
+  for(var i=0;i<f;i++)s+='<svg class="s" viewBox="0 0 20 20" fill="currentColor">'+SP+'</svg>';
+  if(h)s+='<svg class="s" viewBox="0 0 20 20"><defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="50%" stop-color="#ff9900"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="url(#hg)"/></svg>';
+  for(var j=0;j<e;j++)s+='<svg class="s se" viewBox="0 0 20 20" fill="#ddd">'+SP+'</svg>';
   return s;
 }
-
-function makeCard(p){
-  const a=document.createElement('a');
-  a.href=p.u;a.className='product-card';
-  a.innerHTML=`<div class="card-image"><img src="${B}${p.i}" alt="${p.n}" loading="lazy"></div><div class="card-content"><div class="card-title">${p.n}</div><div class="card-price">${p.p}</div><div class="card-rating"><div class="stars">${stars(p.r)}</div><span class="rating-value">${p.r?p.r.toFixed(1):'Nuevo'}</span><span class="rating-count">${p.c?`(${p.c} ${p.c===1?'reseña':'reseñas'})`:''}</span></div></div>`;
-  return a;
-}
-
-const track=document.getElementById('carouselTrack');
-const prev=document.getElementById('prevBtn');
-const next=document.getElementById('nextBtn');
-
-function vis(){
-  const w=window.innerWidth;
-  return w<=420?1:w<=600?2:w<=800?3:w<=1024?4:5;
-}
-
-// Clone array: original + copies at front and back for infinite effect
-let items=[...P,...P,...P]; // triple: [copy][original][copy]
-let offset=P.length; // start at second copy
-items.forEach(p=>track.appendChild(makeCard(p)));
-
-function cardW(){
-  const c=track.querySelector('.product-card');
-  if(!c)return 240;
-  return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);
-}
-
-function go(idx,animate){
-  if(!animate)track.classList.add('no-transition');
-  track.style.transform=`translateX(-${idx*cardW()}px)`;
-  if(!animate)track.offsetHeight; // force reflow
-  if(!animate)track.classList.remove('no-transition');
-}
-
-go(offset,false);
-
-function slide(dir){
-  offset+=dir;
-  go(offset,true);
-}
-
-track.addEventListener('transitionend',()=>{
-  const v=vis();
-  const len=P.length;
-  // If we've gone too far into the back clone, jump to original
-  if(offset>=len*2){offset-=len;go(offset,false);}
-  // If we've gone too far into the front clone, jump to original
-  if(offset<len){offset+=len;go(offset,false);}
+window.addEventListener('load',function(){
+  var P=[
+    {n:"Gramática 1 2026",u:"https://tienda.kningles.com/pages/gramatica1",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772226317/grabd_zfsvf2.jpg",p:"$12.99",r:5.0,c:7},
+    {n:"Restaurante 2026",u:"https://tienda.kningles.com/pages/restaurante",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772225931/gr_kixevj.jpg",p:"$14.99",r:4.3,c:10},
+    {n:"Libro Gratis",u:"https://tienda.kningles.com/pages/libro-gratis",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772296858/Edici%C3%B3n_2023_lgyioi.png",p:"Gratis",r:0,c:0},
+    {n:"Básico A2",u:"https://tienda.kningles.com/pages/basicoa2",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772164671/p_i9yh99.jpg",p:"$9.99",r:4.0,c:5},
+    {n:"Básico A1 2026",u:"https://tienda.kningles.com/pages/basicoa1",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772248574/ggf_xkrskw.jpg",p:"$9.99",r:4.6,c:30},
+    {n:"Conversacional 2026",u:"https://tienda.kningles.com/pages/conver12026",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772164984/gran_tvilnc.jpg",p:"$16.99",r:4.7,c:25},
+    {n:"Plomería",u:"https://tienda.kningles.com/pages/plomeria",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772155861/a1_aaxxz6.jpg",p:"$11.99",r:5.0,c:1},
+    {n:"Enfermería",u:"https://tienda.kningles.com/pages/enfermeria",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772153645/grnade22_nkc2nt.jpg",p:"$13.99",r:5.0,c:4},
+    {n:"Warehouse",u:"https://tienda.kningles.com/pages/warehouse",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772144337/1x_avnnhf.jpg",p:"$10.99",r:5.0,c:7},
+    {n:"Medio avanzado (B1+)",u:"https://tienda.kningles.com/pages/medio-avanzado",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772150797/2xxx_ru0nnw.jpg",p:"$15.99",r:5.0,c:4},
+    {n:"Básico niños",u:"https://tienda.kningles.com/pages/basiconinos",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772232871/ChatGPTImageFeb27202602_50_32P_xxwmky.jpg",p:"$8.99",r:4.1,c:6},
+    {n:"Limpieza",u:"https://tienda.kningles.com/pages/limpieza",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772233621/trert_zmpsfa.jpg",p:"$9.99",r:4.1,c:5},
+    {n:"Dentista",u:"https://tienda.kningles.com/pages/dentista",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772246769/gb_nmmnf9.jpg",p:"$26.99",r:0,c:0},
+    {n:"Construcción 2026",u:"https://tienda.kningles.com/pages/construccion26",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772234442/222_cikevj.jpg",p:"$18.99",r:5.0,c:3},
+    {n:"Conversacional 2",u:"https://tienda.kningles.com/pages/conversacional2",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772234903/717Ub6UKY_L._SL1499__c4jijj.jpg",p:"$16.99",r:5.0,c:1},
+    {n:"Barbería",u:"https://tienda.kningles.com/pages/barberia",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772235954/hyrd_yimuuu.jpg",p:"$12.99",r:5.0,c:2},
+    {n:"B1 Intermedio",u:"https://tienda.kningles.com/pages/b1-intermedio",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772236891/71gwHhUryyL._SL1500__c7wvrj.jpg",p:"$14.99",r:5.0,c:1},
+    {n:"Gramática 2",u:"https://tienda.kningles.com/pages/gramatica2",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772237712/14_hyqqm9.jpg",p:"$7.00",r:0,c:0},
+    {n:"Mecánica",u:"https://tienda.kningles.com/pages/mecanica",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772243539/71wUadwCvwL._SL1500__rjgp7n.jpg",p:"$7.00",r:5.0,c:1},
+    {n:"Electricidad",u:"https://tienda.kningles.com/pages/electricidad",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772244554/24147_n88m0w.jpg",p:"$17.99",r:5.0,c:4},
+    {n:"Ciudadanía",u:"https://tienda.kningles.com/pages/ciudadania26",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772248066/juki_jx4xwv.jpg",p:"$9.99",r:4.4,c:10},
+    {n:"Jardinería",u:"https://tienda.kningles.com/pages/jardineria",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772236508/71alEkd-DQL._SL1500__cxxusi.jpg",p:"$11.99",r:5.0,c:1}
+  ];
+  var track=document.getElementById('t1'),prev=document.getElementById('p1'),next=document.getElementById('n1');
+  if(!track||!prev||!next)return;
+  function mkCard(p){var a=document.createElement('a');a.href=p.u;a.className='pc1';a.innerHTML='<div class="pi1"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd1"><div class="pn1">'+p.n+'</div><div class="pp1">'+p.p+'</div><div class="pr1"><div class="st">'+stars(p.r)+'</div><span class="rv">'+(p.r?p.r.toFixed(1):'Nuevo')+'</span><span class="rc">'+(p.c?'('+p.c+' '+(p.c===1?'reseña':'reseñas')+')'):'')+'</span></div></div>';return a;}
+  var items=P.concat(P).concat(P),off=P.length;
+  items.forEach(function(p){track.appendChild(mkCard(p));});
+  function cw(){var c=track.querySelector('.pc1');if(!c)return 240;return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);}
+  function go(idx,ani){if(!ani){track.classList.add('nt');track.style.transform='translateX(-'+(idx*cw())+'px)';track.offsetHeight;track.classList.remove('nt');}else{track.style.transform='translateX(-'+(idx*cw())+'px)';}}
+  go(off,false);
+  function slide(d){off+=d;go(off,true);}
+  track.addEventListener('transitionend',function(){var len=P.length;if(off>=len*2){off-=len;go(off,false);}if(off<len){off+=len;go(off,false);}});
+  prev.addEventListener('click',function(){slide(-1);});
+  next.addEventListener('click',function(){slide(1);});
+  window.addEventListener('resize',function(){go(off,false);sendH();});
+  sendH();
 });
-
-prev.addEventListener('click',()=>slide(-1));
-next.addEventListener('click',()=>slide(1));
-
-window.addEventListener('resize',()=>go(offset,false));
-})();
+function sendH(){var el=document.getElementById('wrap');if(!el)return;window.parent.postMessage({h:el.offsetHeight+30},'*');}
+window.addEventListener('load',function(){setTimeout(sendH,600);});
 </script>
+</body>
+</html>
