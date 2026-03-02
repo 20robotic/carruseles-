@@ -81,7 +81,7 @@ window.addEventListener('load',function(){
   ];
   var track=document.getElementById('t1'),prev=document.getElementById('p1'),next=document.getElementById('n1');
   if(!track||!prev||!next)return;
-  function mkCard(p){var a=document.createElement('a');a.href=p.u;a.className='pc1';a.innerHTML='<div class="pi1"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd1"><div class="pn1">'+p.n+'</div><div class="pp1">'+p.p+'</div><div class="pr1"><div class="st">'+stars(p.r)+'</div><span class="rv">'+(p.r?p.r.toFixed(1):'Nuevo')+'</span><span class="rc">'+(p.c?'('+p.c+' '+(p.c===1?'reseña':'reseñas')+')'):'')+'</span></div></div>';return a;}
+  function mkCard(p){var a=document.createElement('a');a.href=p.u;a.className='pc1';var rc=p.c?'('+p.c+' '+(p.c===1?'reseña':'reseñas')+')':'';a.innerHTML='<div class="pi1"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd1"><div class="pn1">'+p.n+'</div><div class="pp1">'+p.p+'</div><div class="pr1"><div class="st">'+stars(p.r)+'</div><span class="rv">'+(p.r?p.r.toFixed(1):'Nuevo')+'</span><span class="rc">'+rc+'</span></div></div>';return a;}
   var items=P.concat(P).concat(P),off=P.length;
   items.forEach(function(p){track.appendChild(mkCard(p));});
   function cw(){var c=track.querySelector('.pc1');if(!c)return 240;return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);}
