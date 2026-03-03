@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:transparent;padding:10px 44px 20px}
@@ -21,9 +23,13 @@ body{background:transparent;padding:10px 44px 20px}
 .cb3:hover svg{color:white}
 .cb3 svg{width:22px;height:22px;color:#555}
 .cb3.lf{left:8px}.cb3.rg{right:8px}
+/* Estilo para botones deshabilitados */
+.cb3.disabled{opacity:0.3;pointer-events:none;cursor:default}
+.cb3.disabled:hover{background:white;border-color:#ddd}
+.cb3.disabled:hover svg{color:#555}
 @media(max-width:1024px){.pc3{flex:0 0 calc(25% - 15px)}}
 @media(max-width:800px){.pc3{flex:0 0 calc(33.333% - 14px)}}
-@media(max-width:600px){.pc3{flex:0 0 calc(50% - 10px)}.cb3.lf{left:4px}.cb3.rg{right:4px}}
+@media(max-width:600px){.cb3.lf{left:4px}.cb3.rg{right:4px}}
 @media(max-width:420px){.pc3{flex:0 0 100%}}
 </style>
 </head>
@@ -40,29 +46,132 @@ body{background:transparent;padding:10px 44px 20px}
 </div>
 <script>
 window.addEventListener('load',function(){
+  // Datos originales: solo los libros que existen
   var P=[
     {n:"Libro Gratis",u:"https://tienda.kningles.com/pages/libro-gratis",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772296858/Edici%C3%B3n_2023_lgyioi.png",p:"Gratis"},
     {n:"Gramática 1 + Audios",u:"https://tienda.kningles.com/products/pdf-grama",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772481059/Edici%C3%B3n_2023_1_eoejhd.png",p:"$12.99"},
     {n:"Básico 1 + Audios",u:"https://tienda.kningles.com/products/pdf-basico",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772480879/hy5_a7sumi.png",p:"$12.99"},
     {n:"Ciudadanía + Audios",u:"https://tienda.kningles.com/products/pdf-ciudada",i:"https://res.cloudinary.com/dkadthyok/image/upload/v1772480879/de3_vkejhp.png",p:"$12.99"}
   ];
-  var track=document.getElementById('t3'),prev=document.getElementById('p3'),next=document.getElementById('n3');
-  if(!track||!prev||!next)return;
-  function mkCard(p){var a=document.createElement('a');a.href=p.u; a.target="_top";a.className='pc3';a.innerHTML='<div class="pi3"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"></div><div class="pd3"><div class="pn3">'+p.n+'</div><div class="pp3">'+p.p+'</div></div>';return a;}
-  var items=P.concat(P).concat(P),off=P.length;
-  items.forEach(function(p){track.appendChild(mkCard(p));});
-  function cw(){var c=track.querySelector('.pc3');if(!c)return 240;return c.offsetWidth+(parseInt(getComputedStyle(track).gap)||20);}
-  function go(idx,ani){if(!ani){track.classList.add('nt');track.style.transform='translateX(-'+(idx*cw())+'px)';track.offsetHeight;track.classList.remove('nt');}else{track.style.transform='translateX(-'+(idx*cw())+'px)';}}
-  go(off,false);
-  function slide(d){off+=d;go(off,true);}
-  track.addEventListener('transitionend',function(){var len=P.length;if(off>=len*2){off-=len;go(off,false);}if(off<len){off+=len;go(off,false);}});
-  prev.addEventListener('click',function(){slide(-1);});
-  next.addEventListener('click',function(){slide(1);});
-  window.addEventListener('resize',function(){go(off,false);sendH();});
-  sendH();
+
+  var track = document.getElementById('t3');
+  var prev = document.getElementById('p3');
+  var next = document.getElementById('n3');
+  if (!track || !prev || !next) return;
+
+  // Limpiar contenido previo (por si acaso) y construir tarjetas solo con los libros reales
+  track.innerHTML = '';
+
+  function mkCard(p) {
+    var a = document.createElement('a');
+    a.href = p.u;
+    a.target = "_top";
+    a.className = 'pc3';
+    a.innerHTML = '<div class="pi3"><img src="' + p.i + '" alt="' + p.n + '" loading="lazy"></div><div class="pd3"><div class="pn3">' + p.n + '</div><div class="pp3">' + p.p + '</div></div>';
+    return a;
+  }
+
+  P.forEach(function(p) {
+    track.appendChild(mkCard(p));
+  });
+
+  var totalItems = P.length;
+  var currentIndex = 0; // índice del primer libro visible
+
+  // Calcula ancho de un item incluyendo el gap
+  function getItemWidth() {
+    var first = track.querySelector('.pc3');
+    if (!first) return 0;
+    var gap = parseFloat(getComputedStyle(track).gap) || 20;
+    return first.offsetWidth + gap;
+  }
+
+  // Calcula cuántos libros enteros caben en el contenedor visible
+  function getVisibleItems() {
+    var container = document.querySelector('.cw3');
+    if (!container) return 1;
+    var containerWidth = container.offsetWidth;
+    var itemW = getItemWidth();
+    if (itemW === 0) return 1;
+    return Math.floor(containerWidth / itemW);
+  }
+
+  // Habilita/deshabilita botones según el índice actual
+  function updateButtons() {
+    var visible = getVisibleItems();
+    var maxIndex = Math.max(0, totalItems - visible);
+
+    if (currentIndex <= 0) {
+      prev.classList.add('disabled');
+    } else {
+      prev.classList.remove('disabled');
+    }
+
+    if (currentIndex >= maxIndex) {
+      next.classList.add('disabled');
+    } else {
+      next.classList.remove('disabled');
+    }
+  }
+
+  // Mueve el carrusel al índice indicado (con o sin animación)
+  function go(index, animate) {
+    var visible = getVisibleItems();
+    var maxIndex = Math.max(0, totalItems - visible);
+    // Asegurar que el índice está dentro de límites
+    index = Math.max(0, Math.min(index, maxIndex));
+    if (index === currentIndex) return;
+
+    currentIndex = index;
+    var translateX = -currentIndex * getItemWidth();
+
+    if (!animate) {
+      track.classList.add('nt');
+      track.style.transform = 'translateX(' + translateX + 'px)';
+      // Forzar reflow para aplicar la transform sin transición
+      track.offsetHeight;
+      track.classList.remove('nt');
+    } else {
+      track.style.transform = 'translateX(' + translateX + 'px)';
+    }
+
+    updateButtons();
+  }
+
+  // Inicializar: posición 0, sin animación, y actualizar botones
+  go(0, false);
+
+  // Eventos de clic en botones (solo si no están deshabilitados)
+  prev.addEventListener('click', function() {
+    if (prev.classList.contains('disabled')) return;
+    go(currentIndex - 1, true);
+  });
+
+  next.addEventListener('click', function() {
+    if (next.classList.contains('disabled')) return;
+    go(currentIndex + 1, true);
+  });
+
+  // Al redimensionar la ventana, recalcular y ajustar el índice si es necesario
+  window.addEventListener('resize', function() {
+    var visible = getVisibleItems();
+    var maxIndex = Math.max(0, totalItems - visible);
+    var newIndex = Math.min(currentIndex, maxIndex);
+    go(newIndex, false); // sin animación al redimensionar
+    sendH(); // notificar cambio de altura al padre
+  });
+
+  // Función para comunicar altura al iframe padre (se mantiene igual)
+  function sendH() {
+    var el = document.getElementById('wrap');
+    if (!el) return;
+    window.parent.postMessage({ h: el.offsetHeight + 30 }, '*');
+  }
+
+  // Llamar a sendH después de un breve retraso para asegurar que todo está renderizado
+  setTimeout(sendH, 600);
+  sendH(); // también llamar inmediatamente
 });
-function sendH(){var el=document.getElementById('wrap');if(!el)return;window.parent.postMessage({h:el.offsetHeight+30},'*');}
-window.addEventListener('load',function(){setTimeout(sendH,600);});
 </script>
 </body>
 </html>
